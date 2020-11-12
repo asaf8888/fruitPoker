@@ -43,4 +43,5 @@ public class Player {
     public void incMoneyBuffer(int amount){
         this.moneyBuffer += amount;
     }
+    public ArrayList<Card> getHand(){return this.hand;}
 }

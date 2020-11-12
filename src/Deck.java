@@ -23,7 +23,7 @@ public class Deck {
     public void shuffle(){
         ArrayList<Card> newDeck = new ArrayList<>();
         for (int i = 0; i<this.deck.size(); i++){
-            int index = (int) ((Math.random() * this.deck.size()+1));
+            int index = (int) ((Math.random() * this.deck.size()));
             newDeck.add(this.deck.get(index));
             this.deck.remove(index);
 

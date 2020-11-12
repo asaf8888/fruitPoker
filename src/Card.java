@@ -1,5 +1,24 @@
-public class Card {
-     enum Type{
+public class Card implements Comparable<Card>{
+
+    @Override
+    public int compareTo(Card card) {
+        if(card.getNum() == 1){
+            card.setNum(14);
+        }
+
+        if(this.num == 1){
+            this.num = 14;
+        }
+        if(card.getNum() < this.num){
+            return 1;
+        }
+        if(card.getNum() == this.num){
+            return 0;
+        }
+        return -1;
+    }
+
+    enum Type{
         CLUBS, DIAMONDS, HEARTS, SPADES
     }
 

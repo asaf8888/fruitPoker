@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Game {
     private ArrayList<Player> players;
@@ -115,6 +116,79 @@ public class Game {
     }
 
     public void finishGame(ArrayList<Player> folded){
-
+        ArrayList<int[]> scores = new ArrayList<>(players.size());
+        for (int i = 0; i < players.size(); i++) {
+            if (!folded.contains(players.get(i))){
+                ArrayList<Card> cards = new ArrayList<>(7);
+                cards.addAll(players.get(i).getHand());
+                cards.addAll(middlePile.get());
+                scores.add(finalScore.standartScoring.score(cards));
+            }
+        }
+        for (int i = 0; i < players.size(); i++) {
+            System.out.println(players.get(i).getHand());
+        }
+        System.out.println(this.middlePile.get());
+        for (int[] score: scores){
+            for (int i = 0; i < 3;  i++) {
+                System.out.print(score[i] + " ");
+            }
+            System.out.println("");
+        }
+        ArrayList<Integer> first = new ArrayList<>(players.size());
+        ArrayList<Integer> second = new ArrayList<>(players.size());
+        ArrayList<Integer> third = new ArrayList<>(players.size());
+        for (int[] score: scores){
+            first.add(score[0]);
+        }
+        int firstMax = Collections.max(first);
+        ArrayList<Integer> firstIndexMax = new ArrayList<>(first.size());
+        for (int i = 0; i < first.size(); i++) {
+            if (first.get(i) == firstMax){
+                firstIndexMax.add(i);
+            }
+        }
+        if(firstIndexMax.size() == 1){
+            players.get(firstIndexMax.get(0)).transfer(-moneyPile);
+        }
+        else{
+        for (int i = 0; i < players.size(); i++) {
+            if(firstIndexMax.contains(i)){
+                second.add(scores.get(i)[1]);
+            }
+        }
+        ArrayList<Integer> secondIndexMax = new ArrayList<>(first.size());
+        int secondMax = Collections.max(second);
+        for (int i = 0; i < second.size(); i++) {
+            if (second.get(i) == secondMax){
+                secondIndexMax.add(i);
+            }
+        }
+        if(secondIndexMax.size() == 1){
+            players.get(secondIndexMax.get(0)).transfer(-moneyPile);
+        }
+        else{
+        for (int i = 0; i < players.size(); i++) {
+            if(secondIndexMax.contains(i)){
+                third.add(scores.get(i)[1]);
+            }
+        }
+        ArrayList<Integer> thirdIndexMax = new ArrayList<>(first.size());
+        int thirdMax = Collections.max(second);
+        for (int i = 0; i < third.size(); i++) {
+            if (third.get(i) == thirdMax){
+                thirdIndexMax.add(i);
+            }
+        }
+        if(thirdIndexMax.size() == 1) {
+            players.get(thirdIndexMax.get(0)).transfer(-moneyPile);
+        }
+        else{
+            for (int i = 0; i < thirdIndexMax.size(); i++) {
+                players.get(thirdIndexMax.get(i)).transfer(-moneyPile/thirdIndexMax.size());
+            }
+        }
+        }
+        }
     }
 }
