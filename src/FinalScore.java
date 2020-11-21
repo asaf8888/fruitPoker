@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class finalScore {
+public class FinalScore {
 
     private ArrayList<winCondition> scoring;
     private ArrayList<Boolean> takeFromScoredOnly;
 
-    public finalScore(ArrayList<winCondition> scoring, ArrayList<Boolean> takeFromScoredOnly){
+    public FinalScore(ArrayList<winCondition> scoring, ArrayList<Boolean> takeFromScoredOnly){
         this.scoring = scoring;
         this.takeFromScoredOnly = takeFromScoredOnly;
     }
@@ -32,18 +32,18 @@ public class finalScore {
     }
         return score;
     }
-    public static finalScore standartScoring;
+    public static FinalScore standartScoring;
     static {
         ArrayList<winCondition> standartScoringList = new ArrayList<>();
-        standartScoringList.add(scoringSystems.highestCard);
-        standartScoringList.add(scoringSystems.straightFlush);
-        standartScoringList.add(scoringSystems.fourOfAKind);
-        standartScoringList.add(scoringSystems.fullHouse);
-        standartScoringList.add(scoringSystems.flush);
-        standartScoringList.add(scoringSystems.straight);
-        standartScoringList.add(scoringSystems.threeOfAKind);
-        standartScoringList.add(scoringSystems.twoPair);
-        standartScoringList.add(scoringSystems.pair);
+        standartScoringList.add(ScoringSystems.highestCard);
+        standartScoringList.add(ScoringSystems.straightFlush);
+        standartScoringList.add(ScoringSystems.fourOfAKind);
+        standartScoringList.add(ScoringSystems.fullHouse);
+        standartScoringList.add(ScoringSystems.flush);
+        standartScoringList.add(ScoringSystems.straight);
+        standartScoringList.add(ScoringSystems.threeOfAKind);
+        standartScoringList.add(ScoringSystems.twoPair);
+        standartScoringList.add(ScoringSystems.pair);
 
         ArrayList<Boolean> takeFromScoredOnly = new ArrayList<>(9);
         takeFromScoredOnly.add(false);
@@ -55,6 +55,6 @@ public class finalScore {
         takeFromScoredOnly.add(false);
         takeFromScoredOnly.add(false);
         takeFromScoredOnly.add(false);
-        standartScoring = new finalScore(standartScoringList, takeFromScoredOnly);
+        standartScoring = new FinalScore(standartScoringList, takeFromScoredOnly);
     }
 }

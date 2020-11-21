@@ -1,4 +1,6 @@
 import  java.util.ArrayList;
+import java.util.Collections;
+
 public class Deck {
     private ArrayList<Card> deck;
     public static final ArrayList<Card> standard = new ArrayList<>();
@@ -15,12 +17,12 @@ public class Deck {
     }
 
     public Deck(){
-        this.deck = standard;
-        this.shuffle();
+        this.deck = new ArrayList<>(standard);
+        Collections.shuffle(this.deck);
     }
 
 
-    public void shuffle(){
+    /*public void shuffle(){
         ArrayList<Card> newDeck = new ArrayList<>();
         for (int i = 0; i<this.deck.size(); i++){
             int index = (int) ((Math.random() * this.deck.size()));
@@ -29,6 +31,10 @@ public class Deck {
 
         }
         this.deck = newDeck;
+    }*/
+
+    public ArrayList<Card> getDeck() {
+        return deck;
     }
 
     public Card draw(){

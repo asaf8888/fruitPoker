@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class scoringSystems {
+public class ScoringSystems {
 
 
     public static  winCondition highestCard = new winCondition() {

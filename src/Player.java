@@ -1,3 +1,7 @@
+import javafx.application.Platform;
+import javafx.scene.Group;
+import javafx.scene.text.Text;
+
 import java.util.ArrayList;
 
 public class Player {
@@ -44,4 +48,41 @@ public class Player {
         this.moneyBuffer += amount;
     }
     public ArrayList<Card> getHand(){return this.hand;}
+
+    public void paintHand(Group root, int x, int y, boolean rotate, boolean open){
+        if(!rotate) {
+            x -= this.hand.size() * 50;
+            for (int i = 0; i < this.hand.size(); x+=99, i++) {
+                this.hand.get(i).paintCard(root, x, y, rotate, open);
+            }
+        }
+        else{
+            y -= this.hand.size() * 50;
+            for (int i = 0; i < this.hand.size(); y+=99, i++) {
+                this.hand.get(i).paintCard(root, x, y, rotate, open);
+            }
+        }
+
+
+    }
+
+    public void paintMoney(Group root, int x, int y){
+        Text money = new Text(x, y, Integer.toString(this.money));
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                root.getChildren().add(money);
+            }
+        });
+    }
+
+    public void paint(Group root, int x, int y, boolean rotate, boolean open){
+        this.paintHand(root, x, y, rotate, open);
+        if (!rotate) {
+            this.paintMoney(root, x + this.hand.size() * 50 + 10, y + 75);
+        }
+        else {
+            this.paintMoney(root, x+75, y+this.hand.size()*50+10);
+        }
+    }
 }

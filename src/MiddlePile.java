@@ -1,3 +1,5 @@
+import javafx.scene.Group;
+
 import java.util.ArrayList;
 
 public class MiddlePile {
@@ -28,6 +30,13 @@ public class MiddlePile {
         }
         if(this.middle.size() == 4){
             this.draw(1);
+        }
+    }
+
+    public void paint(Group root, int x, int y){
+        x -= this.get().size()*75;
+        for (int i = 0; i < this.get().size(); x+=150, i++) {
+            this.get().get(i).paintCard(root, x, y, false, true);
         }
     }
 
